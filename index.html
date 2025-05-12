@@ -4,63 +4,39 @@
   <meta charset="UTF-8">
   <title>Albert Avetisyan | CV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f3f4f6;
-      color: #111827;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
-    header {
-      padding: 15px 10px;
+    header, footer {
       text-align: center;
+      padding: 15px;
       background: #111827;
       color: white;
-    }
-    header h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-    }
-    header p {
-      font-size: 1rem;
-      color: #d1d5db;
     }
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 15px;
+      padding: 20px;
     }
-    .cv-container {
+    canvas {
       width: 100%;
       max-width: 800px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .cv-frame {
-      width: 100%;
-      height: calc(100vh - 200px);
-      min-height: 500px;
-      border: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 1px solid #ccc;
       border-radius: 6px;
-      background: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .language-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      margin-top: 15px;
     }
     .language-button {
       padding: 10px 15px;
@@ -68,116 +44,32 @@
       color: white;
       border: none;
       border-radius: 4px;
-      font-size: 0.9rem;
+      margin: 5px;
       cursor: pointer;
-      transition: all 0.3s;
-      text-decoration: none;
-      white-space: nowrap;
     }
     .language-button:hover {
       background-color: #1e2b4d;
-      transform: translateY(-2px);
-    }
-    .language-button.active {
-      background-color: #1e2b4d;
-      font-weight: bold;
-    }
-    footer {
-      padding: 12px;
-      text-align: center;
-      font-size: 0.8rem;
-      background: #e5e7eb;
-      color: #374151;
-    }
-    a {
-      color: #304263;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* Media Queries pour mobile */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.5rem;
-      }
-      header p {
-        font-size: 0.9rem;
-      }
-      .cv-frame {
-        height: calc(100vh - 180px);
-        min-height: 400px;
-        border-radius: 4px;
-      }
-      .language-button {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-      }
-      footer {
-        font-size: 0.75rem;
-        padding: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .cv-container {
-        gap: 10px;
-      }
-      .language-buttons {
-        gap: 8px;
-      }
-      .language-button {
-        padding: 7px 10px;
-        font-size: 0.8rem;
-      }
     }
   </style>
+
+  <!-- PDF.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
 </head>
 <body>
 
 <header>
   <h1>Albert Avetisyan</h1>
-  <p>Data Engineer | Online Resume</p>
+  <p>Data Engineer | CV en ligne</p>
 </header>
 
 <main>
-  <div class="cv-container">
-    <iframe id="cv-iframe" src="Cv_AlbertAVETISYAN_DE.pdf" class="cv-frame" title="Albert Avetisyan's CV"></iframe>
-    
-    <div class="language-buttons">
-      <button class="language-button active" onclick="switchCV('Cv_AlbertAVETISYAN_DE.pdf')">French Version</button>
-      <button class="language-button" onclick="switchCV('Cv_AlbertAVETISYAN_DE_EN.pdf')">English Version</button>
-    </div>
+  <canvas id="pdf-canvas"></canvas>
+
+  <div class="language-buttons">
+    <button class="language-button" onclick="loadPDF('Cv_AlbertAVETISYAN_DE.pdf')">Version Française</button>
+    <button class="language-button" onclick="loadPDF('Cv_AlbertAVETISYAN_DE_EN.pdf')">Version Anglaise</button>
   </div>
 </main>
 
 <footer>
-  📧 albert.avetisyan99@gmail.com | 📍 Toulouse, France | 
-  <a href="https://github.com/AlbertAvetisyan">GitHub</a>
-</footer>
-
-<script>
-  function switchCV(pdfFile) {
-    document.getElementById('cv-iframe').src = pdfFile;
-    
-    // Update active button state
-    const buttons = document.querySelectorAll('.language-button');
-    buttons.forEach(button => {
-      button.classList.remove('active');
-      if (button.textContent.includes(pdfFile.includes('_EN') ? 'English' : 'French')) {
-        button.classList.add('active');
-      }
-    });
-    
-    // Scroll back to top when switching
-    document.getElementById('cv-iframe').scrollTo(0, 0);
-  }
-  
-  // Adjust iframe height on mobile rotation
-  window.addEventListener('resize', function() {
-    const iframe = document.getElementById('cv-iframe');
-    iframe.style.height = 'calc(100vh - 200px)';
-  });
-</script>
-
-</body>
-</html>
+  📧 albert.avetisyan99@gmail.com | 📍 Toul
