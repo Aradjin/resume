@@ -35,10 +35,10 @@
       border-radius: 6px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .language-buttons {
+    .language-buttons, .download-button {
       margin-top: 15px;
     }
-    .language-button {
+    .language-button, .download-button button {
       padding: 10px 15px;
       background-color: #304263;
       color: white;
@@ -47,7 +47,7 @@
       margin: 5px;
       cursor: pointer;
     }
-    .language-button:hover {
+    .language-button:hover, .download-button button:hover {
       background-color: #1e2b4d;
     }
     .error-message {
@@ -58,6 +58,8 @@
 
   <!-- PDF.js via CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
+  <!-- jsPDF via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -73,6 +75,10 @@
   <div class="language-buttons">
     <button class="language-button" onclick="loadPDF('Cv_AlbertAVETISYAN_DE.pdf')">Version Française</button>
     <button class="language-button" onclick="loadPDF('Cv_AlbertAVETISYAN_DE_EN.pdf')">Version Anglaise</button>
+  </div>
+
+  <div class="download-button">
+    <button onclick="downloadPDF()">Télécharger le PDF</button>
   </div>
 </main>
 
@@ -109,6 +115,19 @@
       console.error(reason);
       errorMessage.textContent = 'Erreur de chargement du PDF: ' + reason;
     });
+  }
+
+  function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({
+      orientation: canvas.width > canvas.height ? 'landscape' : 'portrait',
+      unit: 'px',
+      format: [canvas.width, canvas.height]
+    });
+
+    const imgData = canvas.toDataURL('image/png');
+    pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+    pdf.save('CV.pdf');
   }
 
   // Charger la version française par défaut au chargement de la page
