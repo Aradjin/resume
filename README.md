@@ -10,14 +10,15 @@ Bienvenue sur mon dépôt GitHub où je partage mon CV en ligne via GitHub Pages
 
 Ce dépôt contient :
 
-- Mon CV au format PDF (`Cv_AlbertAVETISYAN_DE.pdf`)
-- Une page HTML simple intégrant le CV via un iframe pour affichage en ligne
+- Mon CV au format PDF (`Cv_AlbertAVETISYAN_DE.pdf` et `Cv_AlbertAVETISYAN_DE_EN.pdf`)
+- Une page HTML simple permettant de visualiser et de télécharger le CV
 
 ## 📦 Structure
 
 ```plaintext
 resume/
 ├── Cv_AlbertAVETISYAN_DE.pdf
+├── Cv_AlbertAVETISYAN_DE_EN.pdf
 ├── index.html
 └── README.md
 ```
