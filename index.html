@@ -41,23 +41,27 @@
     }
     .cv-container {
       width: 100%;
-      max-width: 1000px;
+      max-width: 800px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
     }
     .cv-frame {
       width: 100%;
-      height: 85vh;
-      min-height: 600px;
+      height: 1100px;
       border: none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border-radius: 10px;
+      border-radius: 8px;
       background: white;
     }
-    .pdf-button {
-      align-self: center;
-      padding: 12px 24px;
+    .language-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .language-button {
+      padding: 10px 20px;
       background-color: #304263;
       color: white;
       border: none;
@@ -66,11 +70,13 @@
       cursor: pointer;
       transition: background-color 0.3s;
       text-decoration: none;
-      display: inline-block;
-      margin-top: 10px;
     }
-    .pdf-button:hover {
+    .language-button:hover {
       background-color: #1e2b4d;
+    }
+    .language-button.active {
+      background-color: #1e2b4d;
+      font-weight: bold;
     }
     footer {
       padding: 15px;
@@ -79,10 +85,7 @@
       background: #e5e7eb;
       color: #374151;
     }
-    .language-switch {
-      margin-top: 15px;
-    }
-    .language-switch a {
+    a {
       color: #304263;
       text-decoration: none;
       font-weight: 500;
@@ -98,20 +101,34 @@
 
 <main>
   <div class="cv-container">
-    <iframe src="Cv_AlbertAVETISYAN_DE.pdf" class="cv-frame" title="Albert Avetisyan's CV"></iframe>
+    <iframe id="cv-iframe" src="Cv_AlbertAVETISYAN_DE.pdf" class="cv-frame" title="Albert Avetisyan's CV"></iframe>
     
-    <div class="language-switch">
-      <a href="Cv_AlbertAVETISYAN_DE_EN.pdf" class="pdf-button" download>
-        Download English Version (PDF)
-      </a>
+    <div class="language-buttons">
+      <button class="language-button active" onclick="switchCV('Cv_AlbertAVETISYAN_DE.pdf')">French Version</button>
+      <button class="language-button" onclick="switchCV('Cv_AlbertAVETISYAN_DE_EN.pdf')">English Version</button>
     </div>
   </div>
 </main>
 
 <footer>
   📧 albert.avetisyan99@gmail.com | 📍 Toulouse, France | 
-  <a href="https://github.com/AlbertAvetisyan" style="color: #304263; text-decoration: none;">GitHub</a>
+  <a href="https://github.com/AlbertAvetisyan">GitHub</a>
 </footer>
+
+<script>
+  function switchCV(pdfFile) {
+    document.getElementById('cv-iframe').src = pdfFile;
+    
+    // Update active button state
+    const buttons = document.querySelectorAll('.language-button');
+    buttons.forEach(button => {
+      button.classList.remove('active');
+      if (button.textContent.includes(pdfFile.includes('_EN') ? 'English' : 'French')) {
+        button.classList.add('active');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
