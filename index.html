@@ -50,6 +50,10 @@
     .language-button:hover {
       background-color: #1e2b4d;
     }
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
   </style>
 
   <!-- PDF.js via CDN -->
@@ -64,6 +68,7 @@
 
 <main>
   <canvas id="pdf-canvas"></canvas>
+  <div id="error-message" class="error-message"></div>
 
   <div class="language-buttons">
     <button class="language-button" onclick="loadPDF('Cv_AlbertAVETISYAN_DE.pdf')">Version Française</button>
@@ -72,4 +77,45 @@
 </main>
 
 <footer>
-  📧 albert.avetisyan99@gmail.com | 📍 Toul
+  📧 albert.avetisyan99@gmail.com | 📍 Toulouse, France |
+  <a href="https://github.com/AlbertAvetisyan" style="color: #a5b4fc;">GitHub</a>
+</footer>
+
+<script>
+  // Définir le worker PDF.js
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.worker.min.js';
+
+  const canvas = document.getElementById('pdf-canvas');
+  const context = canvas.getContext('2d');
+  const errorMessage = document.getElementById('error-message');
+
+  function loadPDF(url) {
+    const loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(function(pdf) {
+      // On prend la première page du PDF
+      pdf.getPage(1).then(function(page) {
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
+        page.render(renderContext);
+        errorMessage.textContent = '';
+      });
+    }, function(reason) {
+      console.error(reason);
+      errorMessage.textContent = 'Erreur de chargement du PDF: ' + reason;
+    });
+  }
+
+  // Charger la version française par défaut au chargement de la page
+  window.onload = function() {
+    loadPDF('Cv_AlbertAVETISYAN_DE.pdf');
+  };
+</script>
+
+</body>
+</html>
