@@ -27,6 +27,7 @@ resume/
 ├── Cv_AlbertAVETISYAN_DE.pdf
 ├── Cv_AlbertAVETISYAN_DE_EN.pdf
 ├── index.html
+├── qr-code.png
 └── README.md
 ```
 
@@ -41,7 +42,7 @@ Ce projet me permet de :
 ## 📬 Contact
 
 - 📧 Email : <albert.avetisyan99@gmail.com>
-- 🔗 [GitHub](https://github.com/AlbertAvetisyan)
+- 🔗 [GitHub](https://github.com/Aradjin)
 
 ---
 
