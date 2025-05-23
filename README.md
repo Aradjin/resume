@@ -6,6 +6,10 @@ Bienvenue sur mon dépôt GitHub où je partage mon CV en ligne via GitHub Pages
 
 👉 [Consulter mon CV ici](https://aradjin.github.io/resume/)
 
+## 📱 Scanner le QR code pour accéder au CV
+
+![QR Code vers le CV](./qr-code.png)
+
 ## 📄 Contenu
 
 Ce dépôt contient :
