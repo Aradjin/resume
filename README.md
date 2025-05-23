@@ -8,7 +8,10 @@ Bienvenue sur mon dépôt GitHub où je partage mon CV en ligne via GitHub Pages
 
 ## 📱 Scanner le QR code pour accéder au CV
 
-![QR Code vers le CV](./qr-code.png)
+<p align="center">
+  <img src="./qr-code.png" alt="QR Code vers le CV" width="300"/>
+</p>
+
 
 ## 📄 Contenu
 
